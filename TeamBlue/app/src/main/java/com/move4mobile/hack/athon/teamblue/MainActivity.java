@@ -12,6 +12,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        binding.hello.setText("Hello");
+        if(savedInstanceState==null) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.content, new ProductListFragment())
+                    .commit();
+        }
     }
 }

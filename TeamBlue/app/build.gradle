@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 
+repositories {
+    maven { url "https://jitpack.io" }
+}
+
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
@@ -10,6 +14,9 @@ android {
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
+        buildConfigField 'String', 'AUTHORITY', '"' + applicationId + '.content"'
+        resValue 'string', 'authority', applicationId + '.content'
+        buildConfigField 'String', 'API_BASE', '"http://ec2-52-19-178-15.eu-west-1.compute.amazonaws.com"'
     }
     buildTypes {
         release {
@@ -25,4 +32,12 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:24.2.0'
+    compile 'com.android.support:cardview-v7:24.2.0'
+    compile 'com.android.support:recyclerview-v7:24.2.0'
+    compile 'com.android.support:percent:24.2.0'
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
+    compile 'com.github.ZieIony:material-defs:7512439'
 }
