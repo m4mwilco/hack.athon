@@ -25,7 +25,10 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths"/>
         </provider>
-
+        <provider
+            android:authorities="@string/authority"
+            android:exported="false"
+            android:name=".UberProvider" />
     </application>
 
 </manifest>
