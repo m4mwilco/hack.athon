@@ -12,12 +12,10 @@ import com.move4mobile.hack.athon.teamblue.util.ListenableAppCompatActivity;
 public class MainActivity extends ListenableAppCompatActivity implements ImageHelper.Listener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
-    private ImageHelper imageHelper = new ImageHelper(this, this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         if(savedInstanceState==null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.content, new ProductListFragment())
