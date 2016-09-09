@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.move4mobile.hack.athon.teamblue.databinding.FragmentProductListBinding;
+import com.move4mobile.hack.athon.teamblue.network.RestClient;
 
 /**
  * Created by Pepijn on 9-9-2016.
@@ -28,6 +29,9 @@ public class ProductListFragment extends Fragment implements LoaderManager.Loade
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAdapter = new ProductAdapter(this);
+        if(savedInstanceState==null) {
+            RestClient.refreshProducts(getContext());
+        }
     }
 
     @Nullable

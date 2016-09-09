@@ -6,6 +6,7 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         app:contentPadding="@dimen/carbon_padding"
+        android:foreground="?attr/selectableItemBackground"
         android:layout_margin="@dimen/carbon_margin"
         app:cardElevation="@dimen/carbon_elevationMedium"
         android:layout_height="wrap_content">

@@ -18,7 +18,7 @@ public class MainActivity extends ListenableAppCompatActivity implements ImageHe
         super.onCreate(savedInstanceState);
         if(savedInstanceState==null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.content, new ProductListFragment())
+                    .add(android.R.id.content, new ProductListFragment())
                     .commit();
         }
     }

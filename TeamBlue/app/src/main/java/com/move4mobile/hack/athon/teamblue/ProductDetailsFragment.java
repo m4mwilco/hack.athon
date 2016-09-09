@@ -21,7 +21,7 @@ import com.move4mobile.hack.athon.teamblue.databinding.FragmentProductDetailsBin
  * Created by Pepijn on 9-9-2016.
  */
 
-public class ProductDetailsFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
+public class ProductDetailsFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>,ProductDetailsHandler {
 
     private FragmentProductDetailsBinding mBinding;
 
@@ -34,6 +34,7 @@ public class ProductDetailsFragment extends Fragment implements LoaderManager.Lo
                 container,
                 false
         );
+        mBinding.setHandler(this);
         return mBinding.getRoot();
     }
 
@@ -74,10 +75,21 @@ public class ProductDetailsFragment extends Fragment implements LoaderManager.Lo
     private void populate(Cursor cursor) {
         mBinding.description.setText(cursor.getString(2));
         Glide.with(this).load(cursor.getString(4)).into(mBinding.image);
+        ((BaseSubActivity) getActivity()).getToolbar().setTitle(cursor.getString(1));
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
 
+    }
+
+    @Override
+    public void onSaveClicked(View view) {
+        getActivity().finish();
+    }
+
+    @Override
+    public void onOrderClicked(View view) {
+        getActivity().finish();
     }
 }

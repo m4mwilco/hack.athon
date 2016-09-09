@@ -3,54 +3,92 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <android.support.v4.widget.NestedScrollView
+    <data>
+        <variable
+            name="handler"
+            type="com.move4mobile.hack.athon.teamblue.ProductDetailsHandler"/>
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/carbon_padding">
 
-        <LinearLayout
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="@dimen/carbon_padding">
-
-            <TextView
-                android:id="@+id/description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/carbon_margin"
-                android:textAppearance="@style/carbon_TextAppearance.Body1"
-                tools:text="U heeft het volgende product geselecteerd voor uw bezorg-bestelling." />
-
-            <android.support.percent.PercentFrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/carbon_margin">
-
-                <ImageView
-                    android:id="@+id/image"
-                    app:layout_aspectRatio="133%"
-                    app:layout_widthPercent="100%" />
-            </android.support.percent.PercentFrameLayout>
+            android:layout_weight="1"
+            android:layout_height="0px">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <Spinner
-                    android:id="@+id/spinner_1"
-                    android:layout_width="0px"
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:entries="@array/spinner1" />
+                    android:layout_marginBottom="@dimen/carbon_margin"
+                    android:textAppearance="@style/carbon_TextAppearance.Body1"
+                    tools:text="U heeft het volgende product geselecteerd voor uw bezorg-bestelling." />
 
-                <Spinner
-                    android:id="@+id/spinner_2"
-                    android:layout_width="0px"
+                <android.support.percent.PercentFrameLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:entries="@array/spinner2" />
+                    android:layout_marginBottom="@dimen/carbon_margin">
+
+                    <ImageView
+                        android:id="@+id/image"
+                        app:layout_aspectRatio="133%"
+                        app:layout_widthPercent="100%" />
+                </android.support.percent.PercentFrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/spinner_1"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:entries="@array/spinner1" />
+
+                    <Spinner
+                        android:id="@+id/spinner_2"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:entries="@array/spinner2" />
+                </LinearLayout>
             </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="?attr/colorPrimary"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <Button android:layout_width="0px" android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:background="@null"
+                android:onClick="@{handler.onSaveClicked}"
+                android:textColor="@color/carbon_white"
+                android:layout_margin="@dimen/carbon_marginHalf"
+                android:id="@+id/btn_save" android:text="Opslaan" />
+            <Button
+                android:layout_width="0px"
+                android:layout_weight="2"
+                android:textAllCaps="false"
+                android:onClick="@{handler.onOrderClicked}"
+                android:textColor="@color/carbon_white"
+                android:layout_margin="@dimen/carbon_marginHalf"
+                android:background="?attr/colorAccent"
+                android:text="Plaats bestelling"
+                android:layout_height="wrap_content" />
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </LinearLayout>
+
 </layout>

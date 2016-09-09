@@ -33,6 +33,6 @@ public class ProductContract extends BaseContract {
         values.put(CATEGORY, "Dranken");
         values.put(PRICE, 995);
         values.put(IMAGE, "http://cmgtcontent.ahold.com.kpnis.nl/cmgtcontent/media//001399000/000/001399048_002_2708_708.jpg");
-        db.insert(TABLE, null, values);
+        //db.insert(TABLE, null, values);
     }
 }
