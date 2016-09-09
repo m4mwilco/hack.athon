@@ -2,6 +2,7 @@ package com.move4mobile.hack.athon.teamblue;
 
 import android.database.Cursor;
 import android.databinding.DataBindingUtil;
+import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -38,6 +39,7 @@ public class ProductListFragment extends Fragment implements LoaderManager.Loade
                 container,
                 false
         );
+        mBinding.recycler.setAdapter(mAdapter);
         return mBinding.getRoot();
     }
 
@@ -55,7 +57,8 @@ public class ProductListFragment extends Fragment implements LoaderManager.Loade
                 ProductContract.URI,
                 new String[]{
                         ProductContract._ID,
-                        ProductContract.NAME
+                        ProductContract.NAME,
+                        ProductContract.IMAGE,
                 },
                 null,
                 null,
@@ -65,12 +68,12 @@ public class ProductListFragment extends Fragment implements LoaderManager.Loade
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        mAdapter.swapCursor(data);
         if(data!=null) {
             mBinding.setItemCount(data.getCount());
         } else {
             mBinding.setItemCount(-2);
         }
-        mAdapter.swapCursor(data);
     }
 
     @Override
@@ -80,6 +83,8 @@ public class ProductListFragment extends Fragment implements LoaderManager.Loade
 
     @Override
     public void onProductClicked(View v, long id) {
-
+        Bundle args = new Bundle();
+        args.putLong(ProductContract._ID, id);
+        startActivity(BaseSubActivity.getStartIntent(getContext(), ProductDetailsFragment.class, args, false));
     }
 }

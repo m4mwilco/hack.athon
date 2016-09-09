@@ -5,6 +5,7 @@ import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.bumptech.glide.Glide;
 import com.move4mobile.hack.athon.teamblue.databinding.ItemProductBinding;
 
 /**
@@ -27,6 +28,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
     public void populate(Cursor c) {
         mId = c.getLong(0);
         mBinding.title.setText(c.getString(1));
+        Glide.with(mBinding.image.getContext()).load(c.getString(2)).into(mBinding.image);
     }
 
     @Override
