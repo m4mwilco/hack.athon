@@ -5,6 +5,7 @@ import com.move4mobile.hack.athon.teamblue.network.model.Product;
 import java.util.List;
 
 import okhttp3.MultipartBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
@@ -15,5 +16,9 @@ public interface ApiService {
 
     @GET("/")
     Call<List<Product>> getProducts();
+
+    @Multipart
+    @POST("image")
+    Call<List<Product>> getProducts(@Part MultipartBody.Part file);
 
 }
