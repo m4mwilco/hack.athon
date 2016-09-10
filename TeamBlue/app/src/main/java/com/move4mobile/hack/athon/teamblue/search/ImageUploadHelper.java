@@ -54,7 +54,7 @@ public class ImageUploadHelper implements ImageHelper.Listener {
 
             @Override
             public void onFailure(Call<List<Product>> call, Throwable t) {
-                Log.d("abc", "error");
+                Log.d("abc", "error", t);
                 listener.onError();
             }
         });
