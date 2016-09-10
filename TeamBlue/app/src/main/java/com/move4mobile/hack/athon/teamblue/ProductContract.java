@@ -17,6 +17,7 @@ public class ProductContract extends BaseContract {
     public static final String CATEGORY = "category";
     public static final String PRICE = "price";
     public static final String IMAGE = "image";
+    public static final String POSITION = "position";
 
     public static void createTable(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE `" + TABLE + "` (" +
@@ -25,7 +26,8 @@ public class ProductContract extends BaseContract {
                 DESCRIPTION + " TEXT NOT NULL, " +
                 CATEGORY + " TEXT NOT NULL, " +
                 PRICE + " INTEGER NOT NULL DEFAULT 0, " +
-                IMAGE + " TEXT NOT NULL" +
+                IMAGE + " TEXT NOT NULL, " +
+                POSITION + " INTEGER NOT NULL " +
                 ");" );
         ContentValues values = new ContentValues();
         values.put(NAME, "Hertog Jan");

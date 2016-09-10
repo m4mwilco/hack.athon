@@ -70,6 +70,7 @@ public class ProductListFragment extends Fragment implements LoaderManager.Loade
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mBinding.setItemCount(-1);
+        mBinding.setHeaderText("Populaire producten:");
         getLoaderManager().initLoader(0, getArguments(), this);
     }
 
@@ -85,7 +86,7 @@ public class ProductListFragment extends Fragment implements LoaderManager.Loade
                 },
                 null,
                 null,
-                null
+                ProductContract.POSITION
         );
     }
 
@@ -121,6 +122,7 @@ public class ProductListFragment extends Fragment implements LoaderManager.Loade
     @Override
     public void onImageResult(Uri imageUri) {
         mBinding.setItemCount(-1);
+        mBinding.setHeaderText("Op basis van jouw foto hebben we de volgende producten gevonden:");
         new ImageUploadHelper(getActivity(), this).onImageResult(imageUri);
     }
 
@@ -132,5 +134,6 @@ public class ProductListFragment extends Fragment implements LoaderManager.Loade
     @Override
     public void onError() {
         mBinding.setItemCount(-2);
+        mBinding.setHeaderText("");
     }
 }

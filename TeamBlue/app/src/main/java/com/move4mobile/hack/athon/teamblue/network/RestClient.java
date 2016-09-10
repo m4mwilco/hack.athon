@@ -26,6 +26,10 @@ public class RestClient {
         ContentResolver contentResolver = context.getContentResolver();
         contentResolver.delete(ProductContract.URI, null, null);
         if(productList!=null) {
+            for (int i = 0; i < productList.size(); i++) {
+                Product product = productList.get(i);
+                product.position = i;
+            }
             ContentValues[] valueses = new ContentValues[productList.size()];
             for (int i = 0; i < valueses.length; i++) {
                 valueses[i] = productList.get(i).toValues();

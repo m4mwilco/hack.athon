@@ -14,6 +14,7 @@ public class Product {
     public String intro;
     public int price;
     public String image_url;
+    public int position;
 
     public ContentValues toValues() {
         ContentValues values = new ContentValues();
@@ -23,6 +24,7 @@ public class Product {
         values.put(ProductContract.PRICE, price);
         values.put(ProductContract.IMAGE, image_url);
         values.put(ProductContract.CATEGORY, "Default");
+        values.put(ProductContract.POSITION, position);
         return values;
     }
 }

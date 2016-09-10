@@ -48,6 +48,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
         Cursor current = mCursor;
         mCursor = newCursor;
         notifyDataSetChanged();
+        if (current != null) {
+            current.close();
+        }
         return current;
     }
 
