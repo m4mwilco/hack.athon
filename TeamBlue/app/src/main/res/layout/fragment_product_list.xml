@@ -6,6 +6,9 @@
             name="itemCount"
             type="int" />
         <import type="android.view.View" />
+        <variable
+            name="searchHandler"
+            type="com.move4mobile.hack.athon.teamblue.ProductSearchHandler"/>
     </data>
     <FrameLayout
         android:layout_width="match_parent"
@@ -34,5 +37,13 @@
             android:layout_gravity="center"
             android:visibility="@{itemCount==-2?View.VISIBLE:View.GONE}"
             android:layout_height="wrap_content" />
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/carbon_margin"
+            android:src="@drawable/ic_search"
+            android:onClick="@{searchHandler.onSearchClicked}"
+            />
     </FrameLayout>
 </layout>

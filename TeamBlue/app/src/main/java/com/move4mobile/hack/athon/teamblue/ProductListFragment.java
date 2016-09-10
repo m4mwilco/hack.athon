@@ -1,8 +1,9 @@
 package com.move4mobile.hack.athon.teamblue;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.databinding.DataBindingUtil;
-import android.graphics.pdf.PdfDocument;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,15 +16,23 @@ import android.view.ViewGroup;
 
 import com.move4mobile.hack.athon.teamblue.databinding.FragmentProductListBinding;
 import com.move4mobile.hack.athon.teamblue.network.RestClient;
+import com.move4mobile.hack.athon.teamblue.network.model.Product;
+import com.move4mobile.hack.athon.teamblue.search.ImageHelper;
+import com.move4mobile.hack.athon.teamblue.search.ImageUploadHelper;
+import com.move4mobile.hack.athon.teamblue.util.ListenableAppCompatActivity;
+
+import java.util.List;
 
 /**
  * Created by Pepijn on 9-9-2016.
  */
 
-public class ProductListFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>,ProductAdapter.ProductClickListener {
+public class ProductListFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>,ProductAdapter.ProductClickListener, ProductSearchHandler, ImageHelper.Listener, ImageUploadHelper.Listener {
 
     private FragmentProductListBinding mBinding;
     private ProductAdapter mAdapter;
+
+    private ImageHelper imageHelper;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,7 +53,14 @@ public class ProductListFragment extends Fragment implements LoaderManager.Loade
                 false
         );
         mBinding.recycler.setAdapter(mAdapter);
+        mBinding.setSearchHandler(this);
         return mBinding.getRoot();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        imageHelper = new ImageHelper(this, ((ListenableAppCompatActivity) context));
     }
 
     @Override
@@ -90,5 +106,28 @@ public class ProductListFragment extends Fragment implements LoaderManager.Loade
         Bundle args = new Bundle();
         args.putLong(ProductContract._ID, id);
         startActivity(BaseSubActivity.getStartIntent(getContext(), ProductDetailsFragment.class, args, false));
+    }
+
+    @Override
+    public void onSearchClicked(View view) {
+        if (imageHelper != null) {
+            imageHelper.requestImage();
+        }
+    }
+
+    @Override
+    public void onImageResult(Uri imageUri) {
+        mBinding.setItemCount(-1);
+        new ImageUploadHelper(getActivity(), this).onImageResult(imageUri);
+    }
+
+    @Override
+    public void onResponse(List<Product> products) {
+        RestClient.storeProducts(getContext(), products);
+    }
+
+    @Override
+    public void onError() {
+        mBinding.setItemCount(-2);
     }
 }
