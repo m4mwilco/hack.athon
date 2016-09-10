@@ -8,7 +8,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
+import android.support.v4.content.FileProvider;
 import android.support.v4.content.Loader;
+import android.support.v7.widget.GridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +46,7 @@ public class ProductListFragment extends Fragment implements LoaderManager.Loade
                 false
         );
         mBinding.recycler.setAdapter(mAdapter);
+        mBinding.recycler.setLayoutManager(new GridLayoutManager(getContext(), 2));
         return mBinding.getRoot();
     }
 
